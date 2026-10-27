@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <title>二维码转链接</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <span class="mark">▣</span>
+      <div>
+        <h1>二维码转链接</h1>
+        <p>本地解码 · 不联网 · 不跳小程序</p>
+      </div>
+    </div>
+  </header>
+
+  <section class="dropzone" id="dropzone">
+    <div class="dz-title">粘贴、拖入或选择图片</div>
+    <div class="dz-sub">截图后按 <kbd>Ctrl</kbd>+<kbd>V</kbd> 即可识别</div>
+    <button class="btn ghost" id="pickBtn" type="button">选择图片…</button>
+    <input type="file" id="fileInput" accept="image/*" hidden />
+    <div class="dz-status" id="status"></div>
+  </section>
+
+  <section class="result hidden" id="resultBox">
+    <div class="sect-head">
+      <span class="dot"></span><span id="resultTitle">识别结果</span>
+    </div>
+    <textarea id="resultText" class="result-text" readonly spellcheck="false"></textarea>
+    <div class="row">
+      <button class="btn primary" id="copyBtn" type="button">复制链接</button>
+      <button class="btn ghost" id="openBtn" type="button">用浏览器打开</button>
+    </div>
+  </section>
+
+  <section class="page">
+    <div class="sect-head">
+      <span id="pageTitle">本页识别到的二维码</span>
+      <button class="btn tiny ghost" id="scanBtn" type="button">扫描本页</button>
+    </div>
+    <ul class="list" id="pageList"></ul>
+    <p class="empty" id="pageEmpty">
+      还没有结果。把鼠标移到网页里的图片上，点出现的「识码」按钮；或在图片上右键选「识别图片中的二维码」。
+    </p>
+  </section>
+
+  <section class="settings">
+    <div class="sect-head">设置</div>
+    <label><input type="checkbox" id="setHover" /> 图片悬停时显示「识码」按钮</label>
+    <label><input type="checkbox" id="setAuto" /> 页面打开后自动识别方形图片</label>
+    <label><input type="checkbox" id="setPaste" /> 在网页上粘贴图片时自动识别</label>
+    <label><input type="checkbox" id="setAutoCopy" /> 识别成功后自动复制到剪贴板</label>
+  </section>
+
+  <footer class="foot">v1.0.0 · 所有解码都在本地完成，图片不会上传</footer>
+
+  <script src="vendor_jsQR.js"></script>
+  <script src="decoder.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

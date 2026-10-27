@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>QR decode test</title></head>
+<body>
+<img id="qr" src="qr.png">
+<pre id="out">PENDING</pre>
+<script src="vendor_jsQR.js"></script>
+<script src="decoder.js"></script>
+<script>
+window.addEventListener('load', function () {
+  var img = document.getElementById('qr');
+  try {
+    var r = window.QRLH.decodeSource(img);
+    document.getElementById('out').textContent =
+      'RESULT:' + (r.text ? r.text : 'NO_TEXT ERR=' + (r.error ? r.error.name + ':' + r.error.message : 'none'));
+  } catch (e) {
+    document.getElementById('out').textContent = 'EXCEPTION:' + e.name + ':' + e.message;
+  }
+});
+</script>
+</body>
+</html>

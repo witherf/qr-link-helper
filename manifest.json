@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "二维码转链接",
+  "version": "1.0.0",
+  "description": "识别网页图片、截图、粘贴图片里的二维码，提取出链接一键复制，避免被跳转到小程序。",
+  "minimum_chrome_version": "96",
+  "permissions": [
+    "contextMenus",
+    "storage",
+    "clipboardWrite",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "二维码转链接",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["vendor_jsQR.js", "decoder.js", "content.js"],
+      "run_at": "document_idle",
+      "all_frames": true,
+      "match_about_blank": true
+    }
+  ]
+}
